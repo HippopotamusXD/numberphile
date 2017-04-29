@@ -78,12 +78,15 @@ void Game::checkForInput()
 	//POINTS - START
 	 if (!firstSet && set && wnd.mouse.LeftIsPressed()) {
 		for (int n : pointX) {
-			pointX[n] = wnd.mouse.GetPosX();
-			pointY[n] = wnd.mouse.GetPosY();
+			int x = wnd.mouse.GetPosX();
+			int y = wnd.mouse.GetPosY();
+			
+			pointX.push_back(x);
+			pointY.push_back(y);
 		}
 		firstSet = true;
 	}
-	else if (firstSet) {
+	if (firstSet) {
 		for (int i : pointX) {
 			int x = pointX[i];
 			int y = pointY[i];
