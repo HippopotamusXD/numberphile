@@ -23,6 +23,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include <vector>
 
 class Game
 {
@@ -37,17 +38,31 @@ private:
 	/********************************/
 	/*  User Functions              */
 	/********************************/
+	
+	//FIRST 3 POINTS - START
 	void checkForInput();
+	//FISRTS 3 POINTS - END
+
 private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
 	/********************************/
+	
+	//FIRST 3 POINTS - START
 	static constexpr int arrSize = 3;
 	bool clicked = false;
-	bool done = false;
+	bool set = false;
 	int clickNum = 0;
 	int xPos[arrSize];
 	int yPos[arrSize];
+	//FIRST 3 POINTS - END
+
+	//POINTS - START
+	std::vector<int> pointX;
+	std::vector<int> pointY;
+	
+	bool firstSet = false;
+	//POINTS - END
 };

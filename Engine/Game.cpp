@@ -1,5 +1,5 @@
-/****************************************************************************************** 
- *	Chili DirectX Framework Version 16.07.20											  *	
+/******************************************************************************************
+ *	Chili DirectX Framework Version 16.07.20											  *
  *	Game.cpp																			  *
  *	Copyright 2016 PlanetChili.net <http://www.planetchili.net>							  *
  *																						  *
@@ -21,16 +21,16 @@
 #include "MainWindow.h"
 #include "Game.h"
 
-Game::Game( MainWindow& wnd )
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd )
+	wnd(wnd),
+	gfx(wnd)
 {
 }
 
 void Game::Go()
 {
-	gfx.BeginFrame();	
+	gfx.BeginFrame();
 	UpdateModel();
 	ComposeFrame();
 	gfx.EndFrame();
@@ -49,7 +49,8 @@ void Game::ComposeFrame()
 
 void Game::checkForInput()
 {
-	if (wnd.mouse.LeftIsPressed() && !clicked && clickNum < arrSize) {
+	// FIRST 3 POINTS - START
+	if (wnd.mouse.LeftIsPressed() && !clicked && !set) {
 		clicked = true;
 		xPos[clickNum] = wnd.mouse.GetPosX();
 		yPos[clickNum] = wnd.mouse.GetPosY();
@@ -59,7 +60,7 @@ void Game::checkForInput()
 		clicked = false;
 	}
 	if (clickNum >= arrSize) {
-		done = true;
+		set = true;
 	}
 	for (int i = 0; i < arrSize; i++) {
 		if (xPos[i] >= 0 && yPos[i] >= 0) {
@@ -71,4 +72,23 @@ void Game::checkForInput()
 			break;
 		}
 	}
+	//FIRST 3 POINTS - END
+
+
+	//POINTS - START
+	 if (!firstSet && set && wnd.mouse.LeftIsPressed()) {
+		for (int n : pointX) {
+			pointX[n] = wnd.mouse.GetPosX();
+			pointY[n] = wnd.mouse.GetPosY();
+		}
+		firstSet = true;
+	}
+	else if (firstSet) {
+		for (int i : pointX) {
+			int x = pointX[i];
+			int y = pointY[i];
+			gfx.PutPixel(x, y, 0, 0, 255);
+		}
+	}
+	//POINTS - END
 }
