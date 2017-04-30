@@ -74,23 +74,27 @@ void Game::checkForInput()
 	}
 	//FIRST 3 POINTS - END
 
+	//FIRST POINT - START
+	if (!firstSet && set && wnd.mouse.LeftIsPressed() && !clicked) {
+		int x = wnd.mouse.GetPosX();
+		int y = wnd.mouse.GetPosY();
+
+		pointX.push_back(x);
+		pointY.push_back(y);
+		firstSet = true;
+		vectorSize++;
+	}
+	
+	//FIRST POINT - END
+	
 
 	//POINTS - START
-	 if (!firstSet && set && wnd.mouse.LeftIsPressed()) {
-		for (int n : pointX) {
-			int x = wnd.mouse.GetPosX();
-			int y = wnd.mouse.GetPosY();
-			
-			pointX.push_back(x);
-			pointY.push_back(y);
-		}
-		firstSet = true;
-	}
 	if (firstSet) {
-		for (int i : pointX) {
+
+		for ( int i = 0; i < vectorSize; i++){
 			int x = pointX[i];
 			int y = pointY[i];
-			gfx.PutPixel(x, y, 0, 0, 255);
+			gfx.PutPixel(x, y, 255, 255, 255);
 		}
 	}
 	//POINTS - END

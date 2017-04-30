@@ -63,6 +63,9 @@ private:
 	std::vector<int> pointX;
 	std::vector<int> pointY;
 	
+	bool start = false;
 	bool firstSet = false;
+
+	int vectorSize = 0;
 	//POINTS - END
 };
