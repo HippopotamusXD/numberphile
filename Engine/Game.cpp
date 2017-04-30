@@ -20,6 +20,7 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include <cstdlib>
 
 Game::Game(MainWindow& wnd)
 	:
@@ -90,6 +91,15 @@ void Game::checkForInput()
 
 	//POINTS - START
 	if (firstSet) {
+		int point = std::rand() % 3;
+
+		int newX = xPos[point] - ( (xPos[point] - pointX[vectorSize - 1]) / 2 );
+		int newY = yPos[point] - ( (yPos[point] - pointY[vectorSize - 1]) / 2 );
+
+		pointX.push_back(newX);
+		pointY.push_back(newY);
+
+		vectorSize++;
 
 		for ( int i = 0; i < vectorSize; i++){
 			int x = pointX[i];
